@@ -5,9 +5,19 @@
 
 </head>
 <body>
-	<div id="main" style="width: 600px;height:400px;float: left;"></div>
-	<div id="main2" style="width: 600px;height:400px;float: left;"></div>
-	<div id="main3" style="width: 600px;height:400px;float: left;"></div>
+	<h1 style="text-align: center;">太原市空气质量检测大数据</h1>
+	<div id="main" style="width: 20%;height:400px;display: inline-block;"></div>
+	<div id="main2" style="width: 60%;height:400px;display: inline-block;"></div>
+	<!-- <div id="main3" style="width: 40%;height:400px;display: inline-block;"></div> -->
+	<div style="width: 18%;display: inline-block;float: right;">
+		<p>实时天气</p>
+		<p>温度:26</p>
+		<p>湿度:54</p>
+		<p>气压:1009Pa</p>
+		<p>风力:2级</p>
+		<p>AQI:109</p>
+
+	</div>
 
 
 </body>
@@ -18,7 +28,7 @@
 
 	var myChart = echarts.init(document.getElementById('main'));
 	var myChart2 = echarts.init(document.getElementById('main2'));
-	var myChart3 = echarts.init(document.getElementById('main3'));
+	// var myChart3 = echarts.init(document.getElementById('main3'));
 
 
 	option = {
@@ -35,6 +45,22 @@
 	        type: 'bar'
 	    }]
 	};
+
+	option2 = {
+		backgroundColor: '#12cf96',
+	    xAxis: {
+	        type: 'category',
+	        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+	    },
+	    yAxis: {
+	        type: 'value'
+	    },
+	    series: [{
+	        data: [120, 200, 150, 80, 70, 110, 130],
+	        type: 'bar'
+	    }]
+	};
+
 
 
 	option2 = {
@@ -121,7 +147,7 @@
 
 
 	myChart.setOption(option);
-	// myChart2.setOption(option2);
+	myChart2.setOption(option2);
 	// myChart3.setOption(option3);
 
 
