@@ -4,54 +4,46 @@
 	<title></title>
 
 </head>
-<body>
+<body style="background: linear-gradient(to bottom, #378be2 0%,#ffffff 100%);">
 	<h1 style="text-align: center;">太原市空气质量检测大数据</h1>
-	<div id="main" style="width: 30%;height:400px;display: inline-block;"></div>
-	<div id="main2" style="width: 40%;height:400px;display: inline-block;"></div>
+	<div id="main" style="width: 30%;height:400px;display: inline-block;float: left;margin-left: 5%"></div>
+	<div id="main2" style="width: 35%;height:400px;display: inline-block;float: left;"></div>
 	<!-- <div id="main3" style="width: 40%;height:400px;display: inline-block;"></div> -->
-	<div style="width: 18%;display: inline-block;float: right;">
-		<p>实时天气</p>
-		<p>温度:26</p>
-		<p>湿度:54</p>
-		<p>气压:1009Pa</p>
-		<p>风力:2级</p>
-		<p>AQI:109</p>
+	<div style="width: 25%;height: 300px;display: inline-block;float: left;border: 1px solid #ccc;position: relative;margin-bottom: 50px;">
+		<h3 style="position: absolute;top: -32px;left: 43%">实时天气</h3>
+		<p style="padding: 0 5%;line-height: 35px;">温度:26</p>
+		<p style="padding: 0 5%;line-height: 35px">湿度:54</p>
+		<p style="padding: 0 5%;line-height: 35px">气压:1009Pa</p>
+		<p style="padding: 0 5%;line-height: 35px;">风力:2级</p>
+		<p style="padding: 0 5%;line-height: 35px">AQI:109</p>
 
 	</div>
 
-	<div id="main3" style="width: 70%;height:400px;display: inline-block;float: left;"></div>
-	<div id="main4" style="width: 30%;height:400px;display: inline-block;"></div>
-
-
+	<div id="main3" style="width: 65%;height:400px;display: inline-block;float: left;"></div>
+	
+	<div style="width: 25%;height:400px;display: inline-block;position: relative;">
+		<h3 style="position: absolute;top: -31px;left: 43%">污染物分析</h3>
+		<div id="main4" style="border: 1px solid #ccc;height:400px;width: 100%"></div>
+		
+	</div>
+	
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/echarts/4.7.0/echarts-en.min.js"></script>
 
 <script type="text/javascript">
 
+	var height = window.screen.height;
+
+	$('body').height(height)
+
 	var myChart = echarts.init(document.getElementById('main'));
 	var myChart2 = echarts.init(document.getElementById('main2'));
 	var myChart3 = echarts.init(document.getElementById('main3'));
 	var myChart4 = echarts.init(document.getElementById('main4'));
 
-
-	option = {
-		backgroundColor: '#12cf96',
-	    xAxis: {
-	        type: 'category',
-	        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-	    },
-	    yAxis: {
-	        type: 'value'
-	    },
-	    series: [{
-	        data: [120, 200, 150, 80, 70, 110, 130],
-	        type: 'bar'
-	    }]
-	};
-
 	option2 = {
-		backgroundColor: '#12cf96',
+		backgroundColor: 'transparent',
 	    xAxis: {
 	        type: 'category',
 	        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -75,18 +67,15 @@
 	    },
 	    series: [{
 	        data: [820, 932, 901, 934, 1290, 1330, 1320],
-	        type: 'line'
-	    }]
+	        type: 'line',
+	        itemStyle : { normal: {label : {show: true}}}
+	    }],
 	};
-
-
 
 	
 
 	option4 = {
-	    title: {
-	        text: '多雷达图'
-	    },
+	    
 	    tooltip: {
 	        trigger: 'axis'
 	    },
@@ -102,7 +91,6 @@
 	                {text: '可用性', max: 100},
 	                {text: '功能', max: 100}
 	            ],
-	            center: ['25%', '40%'],
 	            radius: 80
 	        },
 	        
@@ -114,13 +102,15 @@
 	            tooltip: {
 	                trigger: 'item'
 	            },
+
 	            areaStyle: {},
 	            data: [
 	                {
-	                    value: [60, 73, 85, 40],
+	                    value: [50, 50, 50, 50],
 	                    
 	                }
-	            ]
+	            ],
+	            center: ['25%', '40%'],
 	        },
 	        
 	        
@@ -128,10 +118,130 @@
 	};
 
 
+
+ 	function rand(m, n) {
+	 if (!n) {
+	     return Math.floor(Math.random() * m);
+	 } else {
+	     var c = n - m + 1;
+	     return Math.floor(Math.random() * c + m);
+	 }
+	}
+
+	function getMax(arr, key) {
+	 var max = 0,
+	     len = arr.length;
+	 for (var i = 0; i < len; i++) {
+	     var item = arr[i][key];
+	     if (max < item) max = item;
+	 }
+	 return max;
+	}
+
+	function getValArr(arr, key) {
+	 var val = [],
+	     len = arr.length;
+	 for (var i = 0; i < len; i++) {
+	     val.push(arr[i][key]);
+	 }
+	 return val;
+	}
+
+	var arr = [];
+	for (var i = 0; i < 10; i++) {
+	 arr.push({
+	     name: '类目名称' + rand(99),
+	     amount: rand(99999) / 100 // 采购金额
+	 });
+	}
+
+	console.log(arr)
+
+	var max = getMax(arr, 'amount'),
+	 angleAxisData = getValArr(arr, 'name');
+
+
+	$.each(arr, function(i, e) {
+	 e.value = (e.amount / max * 100).toFixed(2);
+	});
+	option = {
+	 backgroundColor: 'transparent',
+	 tooltip: {
+	     trigger: 'item',
+	     textStyle: {
+	         fontSize: 16,
+	         color: '#c23531',
+	         fontFamily: 'Microsoft YaHei'
+	     }
+	 },
+	 angleAxis: {
+	     type: 'category',
+	     axisLine: {
+	         lineStyle: {
+	             color: '#6d8a92'
+	         }
+	     },
+	     axisLabel: {
+	         interval: 0,
+	         fontSize: 14,
+	         color: '#c23531',
+	         fontFamily: 'Microsoft YaHei'
+	     },
+	     axisTick: {
+	         show: false
+	     },
+	     data: angleAxisData,
+	     z: 10
+	 },
+	 radiusAxis: {
+        min: 0,
+        max: 100,
+        interval: 20,
+        axisLine: {
+            show: true,
+            lineStyle: {
+                color: "#00c7ff",
+                width: 0,
+                type: "solid"
+            },
+        },
+        axisLabel: {
+            formatter: '{value} %',
+            show: false,
+            
+            color: "#00c7ff",
+            fontSize: 0
+        },
+        splitLine: {
+            lineStyle: {
+                color: "#00c7ff",
+                width: 1,
+                type: "solid"
+            }
+        }
+    },
+	 polar: {
+	     center: ['50%', '50%'],
+	     radius: '74%',
+	 },
+	 series: [{
+	     type: 'bar',
+	     data: arr,
+	     itemStyle: {
+	         color: function(params) {
+	             var colorList = ['#5cc6ca', '#d87a7f', '#f5b97f', '#5ab1ef', '#b6a2de', '#8d98b3', '#e5d02d', '#97b552', '#956f6d', '#d0579c'];
+	             return colorList[params.dataIndex];
+	         }
+	     },
+	     coordinateSystem: 'polar',
+	 }]
+	};
 	myChart.setOption(option);
 	myChart2.setOption(option2);
 	myChart3.setOption(option3);
 	myChart4.setOption(option4);
+
+
 
 
 </script>
