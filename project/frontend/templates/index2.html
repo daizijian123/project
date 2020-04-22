@@ -1,0 +1,469 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body style="background-image: url('{% static 'image/timg1.jpg' %}'); background-size: cover;">
+	<h1>全国人口分析展示</h1>
+	<!-- 图表1 -->
+	<div id="main" style="width: 30%;height:400px;display: inline-block;float: left;margin-right: 3%"></div>
+	<div style="width: 30%;display: inline-block;float: left;text-align: center;margin-right: 3%">
+		<div style="width: 50%;display: inline-block;float: left;">
+			<div>
+				<h2 style="border-right: 1px solid #ccc;">140005</h2>
+				<p>2019年末总人口(万人)</p>
+			</div>
+		</div>
+		<div style="width: 50%;display: inline-block;float: left;">
+			<div>
+				<h2>3.34</h2>
+				<p>2019年人口自然增长率(%)</p>
+			</div>
+		</div>
+
+		<div id="main4" style="width: 100%;height:400px;display: inline-block;float: left;margin-right: 3%"></div>
+	</div>
+	
+	<!-- 图表2 -->
+	<div style="width: 30%;height:400px;display: inline-block;float: left">
+		<div style="text-align: center;">城乡就业人员数量</div>
+		<div id="main2" style="width: 100%;height: 400px"></div>
+	</div>
+
+	<!-- 图表3 -->
+	<div id="main3" style="width: 30%;height:400px;display: inline-block;float: left;margin-right: 3%;clear: both;"></div>
+	
+	<div id="main5" style="width: 30%;height:500px;display: inline-block;float: left;margin-right: 3%;"></div>
+	<div id="main6" style="width: 30%;height:400px;display: inline-block;float: left;margin-right: 3%;"></div>
+	<div style="width: 30%;height:400px;display: inline-block;float: left;margin-right: 3%;clear: both;">
+		<div id="main7" style="width: 30%;height:400px;display: inline-block;float: left;margin-right: 3%;"></div>
+		<div id="main8" style="width: 30%;height:400px;display: inline-block;float: left;margin-right: 3%;"></div>
+		<div id="main9" style="width: 30%;height:400px;display: inline-block;float: left;margin-right: 3%;"></div>
+	</div>
+
+	<div style="width: 30%;display: inline-block;;margin-right: 3%;">
+		<div style="text-align: center;">城乡居民消费水平</div>
+		<div id="main10" style="width: 100%;height:400px"></div>
+	</div>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/echarts/4.7.0/echarts-en.min.js"></script>
+<script type="text/javascript">
+	
+	var myChart = echarts.init(document.getElementById('main'));
+	var myChart2 = echarts.init(document.getElementById('main2'));
+	var myChart3 = echarts.init(document.getElementById('main3'));
+	var myChart4 = echarts.init(document.getElementById('main4'));
+	var myChart5 = echarts.init(document.getElementById('main5'));
+	var myChart6 = echarts.init(document.getElementById('main6'));
+	var myChart7 = echarts.init(document.getElementById('main7'));
+	var myChart8 = echarts.init(document.getElementById('main8'));
+	var myChart9 = echarts.init(document.getElementById('main9'));
+	var myChart10 = echarts.init(document.getElementById('main10'));
+
+	//图表1
+	option = {
+	    color: ['#3398DB'],
+	    tooltip: {
+	        trigger: 'axis',
+	        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+	            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+	        }
+	    },
+	    title:{
+	    	text:'今年人口总数',
+	    	left: 'center',
+	    },
+	    grid: {
+	        left: '3%',
+	        right: '4%',
+	        bottom: '3%',
+	        containLabel: true
+	    },
+	    xAxis: [
+	        {
+	            type: 'category',
+	            data: ['2019', '2018', '2017', '2016', '2015', '2014', '2013'],
+	            axisTick: {
+	                alignWithLabel: true
+	            }
+	        }
+	    ],
+	    yAxis: [
+	        {
+	            type: 'value'
+	        }
+	    ],
+	    series: [
+	        {
+	            name: '直接访问',
+	            type: 'bar',
+	            barWidth: '60%',
+	            data: [10, 52, 200, 334, 390, 330, 220]
+	        }
+	    ]
+	};
+
+
+	//图表2
+	option2 = {
+	    
+	    tooltip: {
+	        trigger: 'axis'
+	    },
+	    legend: {
+	        data: ['城镇', '乡村']
+	    },
+	    grid: {
+	        left: '3%',
+	        right: '4%',
+	        bottom: '3%',
+	        containLabel: true
+	    },
+	    toolbox: {
+	        feature: {
+	            saveAsImage: {}
+	        }
+	    },
+	    xAxis: {
+	        type: 'category',
+	        boundaryGap: false,
+	        data: ['2012', '2013', '2014', '2015', '2016', '2017', '2018']
+	    },
+	    yAxis: {
+	        type: 'value'
+	    },
+	    series: [
+	        {
+	            name: '城镇',
+	            type: 'line',
+	            stack: '总量',
+	            data: [120, 132, 101, 134, 90, 230, 210]
+	        },
+	        {
+	            name: '乡村',
+	            type: 'line',
+	            stack: '总量',
+	            data: [220, 182, 191, 234, 290, 330, 310]
+	        }
+	    ]
+	};
+
+	//图表3
+	option3 = {
+		title:{
+	    	text:'近年人均收入',
+	    	left: 'center',
+	    },
+		tooltip: {
+	        trigger: 'axis',
+	        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+	            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+	        }
+	    },
+	    xAxis: {
+	        type: 'category',
+	        data: ['2019', '2018', '2017', '2016', '2015', '2014', '2013']
+	    },
+	    yAxis: {
+	        type: 'value'
+	    },
+	    series: [{
+	        data: [120, 200, 150, 80, 70, 110, 130],
+	        type: 'bar'
+	    }]
+	};
+
+
+	option4 = {
+	    
+	    tooltip: {
+	        trigger: 'axis'
+	    },
+	    legend: {
+	        data: ['城镇', '乡村']
+	    },
+	    grid: {
+	        left: '3%',
+	        right: '4%',
+	        bottom: '3%',
+	        containLabel: true
+	    },
+	    toolbox: {
+	        feature: {
+	            saveAsImage: {}
+	        }
+	    },
+	    xAxis: {
+	        type: 'category',
+	        boundaryGap: false,
+	        data: ['2012', '2013', '2014', '2015', '2016', '2017', '2018']
+	    },
+	    yAxis: {
+	        type: 'value'
+	    },
+	    series: [
+	        {
+	            name: '城镇',
+	            type: 'line',
+	            stack: '总量',
+	            data: [120, 132, 101, 134, 90, 230, 210]
+	        },
+	        {
+	            name: '乡村',
+	            type: 'line',
+	            stack: '总量',
+	            data: [220, 182, 191, 234, 290, 330, 310]
+	        }
+	    ]
+	};
+
+
+	option5 = {
+	    legend: {},
+	    tooltip: {},
+	    dataset: {
+	        dimensions: ['product', '2015', '2016', '2017'],
+	        source: [
+	            {product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7},
+	            {product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1},
+	            {product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5},
+	            {product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1}
+	        ]
+	    },
+	    xAxis: {type: 'category'},
+	    yAxis: {},
+	    // Declare several bar series, each will be mapped
+	    // to a column of dataset.source by default.
+	    series: [
+	        {type: 'bar'},
+	        {type: 'bar'},
+	        {type: 'bar'}
+	    ]
+	};
+
+
+	option6 = {
+	    xAxis: {
+	        type: 'category',
+	        boundaryGap: false,
+	        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+	    },
+	    yAxis: {
+	        type: 'value'
+	    },
+	    series: [{
+	        data: [820, 932, 901, 934, 1290, 1330, 1320],
+	        type: 'line',
+	        areaStyle: {}
+	    }]
+	};
+
+	option7 = {
+		title:{
+	    	text:'2015年年龄分布',
+	    	left: 'center',
+	    },
+	    tooltip: {
+	        trigger: 'item',
+	        formatter: '{a} <br/>{b}: {c} ({d}%)'
+	    },
+	    legend: {
+	        orient: 'vertical',
+	        top: 200
+	    },
+	    series: [
+	        {
+	            name: '访问来源',
+	            type: 'pie',
+	            radius: ['50%', '70%'],
+	            avoidLabelOverlap: false,
+	            label: {
+	                show: false,
+	                position: 'center'
+	            },
+	            bottom:200,
+	            
+	            labelLine: {
+	                show: false
+	            },
+	            data: [
+	                {value: 335, name: '0-14岁',itemStyle:{color:'#0D73B1'}},
+	                {value: 310, name: '15-64岁',itemStyle:{color:'#0266B4'}},
+	            ]
+	        }
+	    ]
+	};
+
+
+	option8 = {
+		title:{
+	    	text:'2017年年龄分布',
+	    	left: 'center',
+	    },
+	    tooltip: {
+	        trigger: 'item',
+	        formatter: '{a} <br/>{b}: {c} ({d}%)'
+	    },
+	    legend: {
+	        orient: 'vertical',
+	        top: 200
+	    },
+	    series: [
+	        {
+	            name: '访问来源',
+	            type: 'pie',
+	            radius: ['50%', '70%'],
+	            avoidLabelOverlap: false,
+	            label: {
+	                show: false,
+	                position: 'center'
+	            },
+	            bottom:200,
+	            
+	            labelLine: {
+	                show: false
+	            },
+	            data: [
+	                {value: 335, name: '0-14岁'},
+	                {value: 310, name: '15-64岁'},
+	            ]
+	        }
+	    ]
+	};
+
+
+	option9 = {
+		title:{
+	    	text:'2016年年龄分布',
+	    	left: 'center',
+	    },
+	    tooltip: {
+	        trigger: 'item',
+	        formatter: '{a} <br/>{b}: {c} ({d}%)'
+	    },
+	    legend: {
+	        orient: 'vertical',
+	        top: 200
+	        
+	    },
+	    
+	    series: [
+	        {
+	            name: '访问来源',
+	            type: 'pie',
+	            radius: ['50%', '70%'],
+	            avoidLabelOverlap: false,
+	            label: {
+	                show: false,
+	                position: 'center'
+	            },
+	            bottom:200,
+	            labelLine: {
+	                show: false
+	            },
+	            data: [
+	                {value: 335, name: '0-14岁',itemStyle:{color:'#ccc'}},
+	                {value: 310, name: '15-64岁'},
+	                
+	            ]
+	        }
+	    ]
+	};
+
+
+	option10 = {
+		
+	    tooltip: {
+	        trigger: 'axis',
+	        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+	            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+	        }
+	    },
+	    legend: {
+	        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+	    },
+	    grid: {
+	        left: '3%',
+	        right: '4%',
+	        bottom: '3%',
+	        containLabel: true
+	    },
+	    xAxis: {
+	        type: 'value'
+	    },
+	    yAxis: {
+	        type: 'category',
+	        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+	    },
+	    series: [
+	        {
+	            name: '直接访问',
+	            type: 'bar',
+	            stack: '总量',
+	            label: {
+	                show: true,
+	                position: 'insideRight'
+	            },
+	            data: [320, 302, 301, 334, 390, 330, 320]
+	        },
+	        {
+	            name: '邮件营销',
+	            type: 'bar',
+	            stack: '总量',
+	            label: {
+	                show: true,
+	                position: 'insideRight'
+	            },
+	            data: [120, 132, 101, 134, 90, 230, 210]
+	        },
+	        {
+	            name: '联盟广告',
+	            type: 'bar',
+	            stack: '总量',
+	            label: {
+	                show: true,
+	                position: 'insideRight'
+	            },
+	            data: [220, 182, 191, 234, 290, 330, 310]
+	        },
+	        {
+	            name: '视频广告',
+	            type: 'bar',
+	            stack: '总量',
+	            label: {
+	                show: true,
+	                position: 'insideRight'
+	            },
+	            data: [150, 212, 201, 154, 190, 330, 410]
+	        },
+	        {
+	            name: '搜索引擎',
+	            type: 'bar',
+	            stack: '总量',
+	            label: {
+	                show: true,
+	                position: 'insideRight'
+	            },
+	            data: [820, 832, 901, 934, 1290, 1330, 1320]
+	        }
+	    ]
+	};
+
+	myChart.setOption(option);
+	myChart2.setOption(option2);
+	myChart3.setOption(option3);
+	myChart4.setOption(option4);
+	myChart5.setOption(option5);
+	myChart6.setOption(option6);
+	myChart7.setOption(option7);
+	myChart8.setOption(option8);
+	myChart9.setOption(option9);
+	myChart10.setOption(option10);
+
+
+</script>
+</html>

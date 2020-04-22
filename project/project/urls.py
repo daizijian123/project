@@ -23,6 +23,9 @@ from backed import views as backed_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path('index/', backed_views.index),
+    path('login/', backed_views.login, name='login'),
+	path('register/', backed_views.register, name='register'),
+    path('index/', backed_views.index, name='index'),
+    path('index2/', backed_views.index2, name='index2'),
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

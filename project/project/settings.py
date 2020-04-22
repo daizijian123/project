@@ -66,10 +66,13 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+        
     },
 ]
 
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend/static'),
+]
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
@@ -125,3 +128,4 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = './media/'
+

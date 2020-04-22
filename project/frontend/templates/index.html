@@ -1,28 +1,30 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
 
 </head>
-<body style="background: linear-gradient(to bottom, #378be2 0%,#ffffff 100%);">
-	<h1 style="text-align: center;">太原市空气质量检测大数据</h1>
+<body style="background-image: url('{% static 'image/timg.jpg' %}'); background-size: cover;">
+	<h1 style="text-align: center;color: white">太原市空气质量检测大数据</h1>
 	<div id="main" style="width: 30%;height:400px;display: inline-block;float: left;margin-left: 5%"></div>
 	<div id="main2" style="width: 35%;height:400px;display: inline-block;float: left;"></div>
 	<!-- <div id="main3" style="width: 40%;height:400px;display: inline-block;"></div> -->
 	<div style="width: 25%;height: 300px;display: inline-block;float: left;border: 1px solid #ccc;position: relative;margin-bottom: 50px;">
-		<h3 style="position: absolute;top: -32px;left: 43%">实时天气</h3>
-		<p style="padding: 0 5%;line-height: 35px;">温度:26</p>
-		<p style="padding: 0 5%;line-height: 35px">湿度:54</p>
-		<p style="padding: 0 5%;line-height: 35px">气压:1009Pa</p>
-		<p style="padding: 0 5%;line-height: 35px;">风力:2级</p>
-		<p style="padding: 0 5%;line-height: 35px">AQI:109</p>
+		<h3 style="position: absolute;top: -32px;left: 43%;color: white">实时天气</h3>
+		<p style="padding: 0 5%;line-height: 35px;color: #fff">温度:26</p>
+		<p style="padding: 0 5%;line-height: 35px;color: #fff">湿度:54</p>
+		<p style="padding: 0 5%;line-height: 35px;color: #fff">气压:1009Pa</p>
+		<p style="padding: 0 5%;line-height: 35px;color: #fff">风力:2级</p>
+		<p style="padding: 0 5%;line-height: 35px;color: #fff">AQI:109</p>
 
 	</div>
 
 	<div id="main3" style="width: 65%;height:400px;display: inline-block;float: left;"></div>
 	
 	<div style="width: 25%;height:400px;display: inline-block;position: relative;">
-		<h3 style="position: absolute;top: -31px;left: 43%">污染物分析</h3>
+		<h3 style="position: absolute;top: -31px;left: 43%;color: white">污染物分析</h3>
 		<div id="main4" style="border: 1px solid #ccc;height:400px;width: 100%"></div>
 		
 	</div>
@@ -48,6 +50,9 @@
 	        type: 'category',
 	        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 	    },
+	    textStyle:{
+	    	color:'#fff'
+	    },
 	    yAxis: {
 	        type: 'value'
 	    },
@@ -64,6 +69,9 @@
 	    },
 	    yAxis: {
 	        type: 'value'
+	    },
+	    textStyle:{
+	    	color:'#fff'
 	    },
 	    series: [{
 	        data: [820, 932, 901, 934, 1290, 1330, 1320],
@@ -82,6 +90,9 @@
 	    legend: {
 	        left: 'center',
 	        
+	    },
+	    textStyle:{
+	    	color:'#fff'
 	    },
 	    radar: [
 	        {
@@ -170,21 +181,24 @@
 	     trigger: 'item',
 	     textStyle: {
 	         fontSize: 16,
-	         color: '#c23531',
+	         color: '#fff',
 	         fontFamily: 'Microsoft YaHei'
 	     }
 	 },
+	 textStyle:{
+    	color:'#fff'
+    },
 	 angleAxis: {
 	     type: 'category',
 	     axisLine: {
 	         lineStyle: {
-	             color: '#6d8a92'
+	             color: '#fff'
 	         }
 	     },
 	     axisLabel: {
 	         interval: 0,
 	         fontSize: 14,
-	         color: '#c23531',
+	         color: '#fff',
 	         fontFamily: 'Microsoft YaHei'
 	     },
 	     axisTick: {
